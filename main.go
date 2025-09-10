@@ -8,10 +8,12 @@ import (
 	"mcmod-crawler/jsonProcess"
 	"net/http"
 	"os"
+	"strconv"
 	"time"
 )
 
 var workerCount = flag.Int("thread", 25, "线程数，默认25")
+var port = flag.Int("port", 8080, "端口号，默认8080")
 
 func startWebServer() {
 
@@ -100,7 +102,7 @@ func startWebServer() {
 	})
 
 	fmt.Println("服务器已启动: http://localhost:8080")
-	r.Run(":8080")
+	r.Run(":" + strconv.Itoa(*port))
 }
 
 func loadOrFetch() {
